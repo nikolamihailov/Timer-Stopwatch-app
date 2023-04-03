@@ -8,9 +8,10 @@ const timeSelected = document.getElementById("times");
 
 let dropdownValue = Number(timeSelected.value);
 console.log(dropdownValue);
-pomodoro.innerHTML = "00 : 00 : 00";
+pomodoro.innerHTML = "00 : 01 : 00";
 
 stopB.addEventListener("click", () => {
+    timeSelected.disabled = false;
     startB.disabled = false;
     pomodoro.innerHTML = "00 : 00 : 00";
     clearInterval(timeInterval)
@@ -19,10 +20,7 @@ stopB.addEventListener("click", () => {
 
 let pomodoroTimeC;
 
-
-let isTimeSelected = false;
 timeSelected.addEventListener("change", () => {
-    isTimeSelected = true;
     dropdownValue = Number(timeSelected.value);
     console.log(dropdownValue);
     switch (dropdownValue) {
@@ -42,26 +40,27 @@ timeSelected.addEventListener("change", () => {
 });
 let timeInterval;
 startB.addEventListener("click", () => {
+    timeSelected.disabled = true;
     const pomodoroTime = new Date();
     const now = new Date();
     pomodoroTimeC = pomodoroTime;
-    pomodoroTime.setMinutes(now.getMinutes() + dropdownValue);
     console.log(dropdownValue);
+    pomodoroTime.setMinutes(now.getMinutes() + dropdownValue);
+
     function startTimer() {
-        const now = new Date();
-        if (isTimeSelected) {
-            const differenceInSeconds = (pomodoroTimeC - now) / 1000;
-            const hoursP = Math.floor(differenceInSeconds / 3600) % 24;
-            const minutesP = Math.floor(differenceInSeconds / 60) % 60;
-            const secondsP = Math.floor(differenceInSeconds) % 60 + 1;
-            const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
-            pomodoro.innerHTML = timeP;
-            if (formatTime(hoursP) == 00 && formatTime(minutesP) == 00 && formatTime(secondsP) == 00) {
-                clearInterval(timeInterval);
-                audio.play();
-                isTimeSelected = false;
-                return pomodoro.innerHTML = "00 : 00 : 00";
-            }
+        const nowIn = new Date();
+        const differenceInSeconds = (pomodoroTimeC - nowIn) / 1000;
+        const hoursP = Math.floor(differenceInSeconds / 3600) % 24;
+        const minutesP = Math.floor(differenceInSeconds / 60) % 60;
+        const secondsP = Math.floor(differenceInSeconds) % 60;
+        const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
+        pomodoro.innerHTML = timeP;
+        console.log(pomodoro.innerHTML);
+        if (pomodoro.innerHTML === "00 : 00 : 00") {
+            clearInterval(timeInterval);
+            audio.play();
+            return pomodoro.innerText = "00 : 00 : 00";
+
         }
     }
 
@@ -72,7 +71,7 @@ startB.addEventListener("click", () => {
 
 const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
-}
+}/*
 function refreshTime() {
     const now = new Date();
     const hours = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();;
@@ -82,7 +81,7 @@ function refreshTime() {
     timeNow.innerHTML = time;
 }
 refreshTime();
-setInterval(refreshTime, 1000);
+setInterval(refreshTime, 1000);*/
 
 
 
