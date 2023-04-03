@@ -11,6 +11,7 @@ console.log(dropdownValue);
 pomodoro.innerHTML = "00 : 00 : 00";
 
 stopB.addEventListener("click", () => {
+    startB.disabled = false;
     pomodoro.innerHTML = "00 : 00 : 00";
     clearInterval(timeInterval)
     audio.pause();
@@ -65,8 +66,9 @@ startB.addEventListener("click", () => {
     }
 
     timeInterval = setInterval(startTimer, 1000);
+    startB.disabled = true;
 
-})
+})/*
 function startTimer() {
     const now = new Date();
     if (isTimeSelected) {
@@ -84,7 +86,7 @@ function startTimer() {
         }
     }
 }
-
+*/
 
 const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
