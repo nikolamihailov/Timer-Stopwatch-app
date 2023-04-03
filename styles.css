@@ -1,0 +1,44 @@
+body {
+    color: white;
+    height: 100vh;
+    text-align: center;
+    background-color: rgb(30, 28, 28);
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0;
+}
+
+.pomodoroTime {
+    font-size: 50px;
+}
+
+button {
+    width: 110px;
+    height: 45px;
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
+    outline: none;
+}
+
+button:active {
+    scale: 0.96;
+}
+
+
+#startTimer {
+    background-color: green;
+}
+
+#stopTimer {
+    background-color: red;
+}
