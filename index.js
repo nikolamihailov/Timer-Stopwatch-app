@@ -53,7 +53,7 @@ startB.addEventListener("click", () => {
             const differenceInSeconds = (pomodoroTimeC - now) / 1000;
             const hoursP = Math.floor(differenceInSeconds / 3600) % 24;
             const minutesP = Math.floor(differenceInSeconds / 60) % 60;
-            const secondsP = Math.floor(differenceInSeconds) % 60;
+            const secondsP = Math.floor(differenceInSeconds) % 60 + 1;
             const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
             pomodoro.innerHTML = timeP;
             if (formatTime(hoursP) == 00 && formatTime(minutesP) == 00 && formatTime(secondsP) == 00) {
@@ -68,25 +68,7 @@ startB.addEventListener("click", () => {
     timeInterval = setInterval(startTimer, 1000);
     startB.disabled = true;
 
-})/*
-function startTimer() {
-    const now = new Date();
-    if (isTimeSelected) {
-        const differenceInSeconds = (pomodoroTimeC - now) / 1000;
-        const hoursP = Math.floor(differenceInSeconds / 3600) % 24;
-        const minutesP = Math.floor(differenceInSeconds / 60) % 60;
-        const secondsP = Math.floor(differenceInSeconds) % 60;
-        const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
-        pomodoro.innerHTML = timeP;
-        if (formatTime(hoursP) == 00 && formatTime(minutesP) == 00 && formatTime(secondsP) == 00) {
-            clearInterval(timeInterval);
-            audio.play();
-            isTimeSelected = false;
-            return pomodoro.innerHTML = "00 : 00 : 00";
-        }
-    }
-}
-*/
+})
 
 const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
