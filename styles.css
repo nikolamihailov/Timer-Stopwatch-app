@@ -10,8 +10,11 @@ body {
 
 
 .timeNow {
-    margin-bottom: 120px;
-    margin-top: 0;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin: 0;
 }
 
 select {
@@ -35,7 +38,7 @@ option {
 }
 
 option:checked {
-    background-color: rgb(163, 163, 163);
+    background-color: rgb(119, 118, 118);
 }
 
 
