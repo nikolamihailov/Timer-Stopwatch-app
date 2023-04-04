@@ -8,7 +8,7 @@ const minutesSelected = document.getElementById("times");
 //const secondsSelected = document.getElementById("seconds");
 
 let dropdownValue = Number(minutesSelected.value);
-console.log(dropdownValue);
+//console.log(dropdownValue);
 pomodoro.innerHTML = "00 : 00 : 00";
 
 stopB.addEventListener("click", () => {
@@ -23,8 +23,9 @@ let pomodoroTimeC;
 
 minutesSelected.addEventListener("change", () => {
     dropdownValue = Number(minutesSelected.value);
-    console.log(dropdownValue);
     switch (dropdownValue) {
+        case 0:
+            pomodoro.innerHTML = "00 : 00 : 00"; break
         case 1:
             pomodoro.innerHTML = "00 : 01 : 00"; break
         case 5:
@@ -37,6 +38,8 @@ minutesSelected.addEventListener("change", () => {
             pomodoro.innerHTML = "00 : 30 : 00"; break
         case 60:
             pomodoro.innerHTML = "01 : 00 : 00"; break
+        case 120:
+            pomodoro.innerHTML = "02 : 00 : 00"; break
     }
 });
 let timeInterval;
@@ -45,11 +48,9 @@ startB.addEventListener("click", () => {
     const pomodoroTime = new Date();
     const now = new Date();
     pomodoroTimeC = pomodoroTime;
-    console.log(dropdownValue);
     pomodoroTime.setMinutes(now.getMinutes() + dropdownValue);
     if (dropdownValue > 0) {
         minutesSelected.disabled = true;
-
         function startTimer() {
             const nowIn = new Date();
             const differenceInSeconds = (pomodoroTimeC - nowIn) / 1000;
@@ -58,7 +59,6 @@ startB.addEventListener("click", () => {
             const secondsP = Math.ceil(differenceInSeconds) % 60;
             const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
             pomodoro.innerHTML = timeP;
-            console.log(pomodoro.innerHTML);
             if (pomodoro.innerHTML === "0-1 : 0-1 : 00") {
                 clearInterval(timeInterval);
                 audio.play();
@@ -76,7 +76,7 @@ startB.addEventListener("click", () => {
 
 const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
-}/*
+}
 function refreshTime() {
     const now = new Date();
     const hours = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();;
@@ -86,7 +86,7 @@ function refreshTime() {
     timeNow.innerHTML = time;
 }
 refreshTime();
-setInterval(refreshTime, 1000);*/
+setInterval(refreshTime, 1000);
 
 
 
