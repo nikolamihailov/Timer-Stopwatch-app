@@ -10,6 +10,8 @@ body {
 
 
 .timeNow {
+    font-size: 17px;
+    font-weight: bold;
     position: absolute;
     top: 15px;
     left: 0;
