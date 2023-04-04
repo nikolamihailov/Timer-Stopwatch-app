@@ -5,10 +5,8 @@ const stopB = document.getElementById("stopTimer");
 const timeNow = document.querySelector(".timeNow");
 const pomodoro = document.querySelector(".pomodoroTime");
 const minutesSelected = document.getElementById("times");
-//const secondsSelected = document.getElementById("seconds");
 
 let dropdownValue = Number(minutesSelected.value);
-//console.log(dropdownValue);
 pomodoro.innerHTML = "00 : 00 : 00";
 
 stopB.addEventListener("click", () => {
@@ -21,7 +19,7 @@ stopB.addEventListener("click", () => {
 
 let pomodoroTimeC;
 
-minutesSelected.addEventListener("change", () => {
+minutesSelected.addEventListener("click", () => {
     dropdownValue = Number(minutesSelected.value);
     switch (dropdownValue) {
         case 0:
@@ -44,7 +42,6 @@ minutesSelected.addEventListener("change", () => {
 });
 let timeInterval;
 startB.addEventListener("click", () => {
-
     const pomodoroTime = new Date();
     const now = new Date();
     pomodoroTimeC = pomodoroTime;
@@ -70,8 +67,6 @@ startB.addEventListener("click", () => {
         timeInterval = setInterval(startTimer, 1000);
         startB.disabled = true;
     }
-
-
 })
 
 const formatTime = (time) => {
@@ -85,6 +80,7 @@ function refreshTime() {
     const time = `${hours} : ${minutes} : ${seconds}`;
     timeNow.innerHTML = time;
 }
+
 refreshTime();
 setInterval(refreshTime, 1000);
 
