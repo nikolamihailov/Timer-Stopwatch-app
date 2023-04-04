@@ -9,7 +9,7 @@ const minutesSelected = document.getElementById("times");
 let dropdownValue = Number(minutesSelected.value);
 timer.innerHTML = "00 : 00 : 00";
 
-stopB.addEventListener("click", () => {
+stopB.addEventListener("change", () => {
     minutesSelected.disabled = false;
     startB.disabled = false;
     timer.innerHTML = "00 : 00 : 00";
