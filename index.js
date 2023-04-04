@@ -16,6 +16,7 @@ stopB.addEventListener("click", () => {
     timer.innerHTML = "00 : 00 : 00";
     clearInterval(timeInterval)
     audio.pause();
+    audioBeep.pause();
 })
 
 let timerC;
