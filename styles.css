@@ -85,13 +85,12 @@ button:active {
 
 
 #startTimer {
-    box-shadow: 0px 4px 6px rgb(16, 228, 16);
+    box-shadow: 0px 4px 6px rgb(15, 217, 15);
     background-color: green;
 }
 
 #startTimer:hover {
     box-shadow: none;
-    /*background-color: rgb(0, 95, 0);*/
 }
 
 #stopTimer {
@@ -101,7 +100,6 @@ button:active {
 
 #stopTimer:hover {
     box-shadow: none;
-    /* background-color: rgb(150, 1, 1);*/
 }
 
 @media only screen and (max-width: 500px) {
