@@ -1,5 +1,6 @@
 const timeEl = document.getElementById("time");
 const audio = document.getElementById("alarm");
+const audioBeep = document.getElementById("beep");
 const startB = document.getElementById("startTimer");
 const stopB = document.getElementById("stopTimer");
 const timeNow = document.querySelector(".timeNow");
@@ -55,8 +56,12 @@ startB.addEventListener("click", () => {
             const minutesP = Math.floor(differenceInSeconds / 60) % 60;
             const secondsP = Math.ceil(differenceInSeconds) % 60;
             const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
+            if (secondsP < 11 && secondsP >= 1 && minutesP === 0 && hoursP === 0) {
+                audioBeep.play();
+            }
             timer.innerHTML = timeP;
             if (timer.innerHTML === "0-1 : 0-1 : 00") {
+                audioBeep.pause();
                 clearInterval(timeInterval);
                 audio.play();
                 return timer.innerText = "00 : 00 : 00";
