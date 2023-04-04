@@ -34,6 +34,7 @@ select:focus {
 }
 
 option {
+    font-size: 16px;
     text-align: center;
     background-color: rgb(206, 204, 204);
     color: black;
@@ -46,7 +47,7 @@ option:checked {
 
 
 .container {
-    height: 80vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,17 +56,23 @@ option:checked {
     margin: 0;
 }
 
-.pomodoroTime {
-    font-size: 100px;
+.timer {
+    font-size: 130px;
     margin: 0px;
+    margin-bottom: 30px;
 }
 
 .dropdown-times {
-    margin-top: 50px;
+    margin-top: 30px;
+}
+
+.dropdown-times h2 {
+    margin: 0;
+    margin-bottom: 20px;
 }
 
 .buttons {
-    width: 300px;
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -73,8 +80,8 @@ option:checked {
 
 button {
     all: unset;
-    margin-top: 50px;
-    width: 110px;
+    margin-top: 20px;
+    width: 140px;
     height: 45px;
     color: white;
     cursor: pointer;
@@ -107,9 +114,22 @@ button:active {
     box-shadow: none;
 }
 
-@media only screen and (max-width: 500px) {
-    .pomodoroTime {
-        font-size: 60px;
+@media only screen and (max-width: 900px) {
+    .timer {
+        font-size: 100px;
+    }
 
+    .buttons {
+        width: 250px;
+    }
+
+    button {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .timer {
+        font-size: 60px;
     }
 }
