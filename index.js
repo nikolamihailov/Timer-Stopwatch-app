@@ -59,31 +59,31 @@ minutesSelected.addEventListener("change", () => {
             timer.innerHTML = "00 : 00 : 00"; break
         case 1:
             timer.innerHTML = "00 : 01 : 00";
-            progressStep = 100 / 60;
+            progressStep = 100 / (60 * 1);
             break
         case 5:
             timer.innerHTML = "00 : 05 : 00";
-            progressStep = 100 / 300;
+            progressStep = 100 / (60 * 5);
             break
         case 10:
             timer.innerHTML = "00 : 10 : 00";
-            progressStep = 100 / 600;
+            progressStep = 100 / (60 * 10);
             break
         case 15:
             timer.innerHTML = "00 : 15 : 00";
-            progressStep = 100 / 900;
+            progressStep = 100 / (60 * 15);
             break
         case 30:
             timer.innerHTML = "00 : 30 : 00";
-            progressStep = 100 / 1800;
+            progressStep = 100 / (60 * 30);
             break
         case 60:
             timer.innerHTML = "01 : 00 : 00";
-            progressStep = 100 / 3600;
+            progressStep = 100 / (60 * 60);
             break
         case 120:
             timer.innerHTML = "02 : 00 : 00";
-            progressStep = 100 / 7200;
+            progressStep = 100 / (60 * 120);
             break
     }
 });
@@ -106,13 +106,14 @@ startB.addEventListener("click", () => {
             if (secondsP < 11 && secondsP >= 1 && minutesP === 0 && hoursP === 0) {
                 audioBeep.play();
             }
+
             progressTotal += progressStep;
             progressBar.style.background = `conic-gradient(
       red ${progressTotal * 3.6}deg,
       #f0f0f0 ${progressTotal * 3.6}deg
   )`;
 
-            if (hoursP === -1 && minutesP === -1 && secondsP === 0) {
+            if (hoursP === -1 && minutesP === -1 && secondsP === -0) {
                 audioBeep.pause();
                 clearInterval(timeInterval);
                 audio.play();
