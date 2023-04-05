@@ -13,18 +13,18 @@
 <body>
     <p class="timeNow"></p>
     <div class="container">
-
-        <div id="time-container">
-            <audio id="alarm" loop="true" src="./alarm-sound/alarm.mp3"></audio>
-            <audio id="beep" loop="true" src="./alarm-sound/ping.mp3"></audio>
-            <p class="timer"></p>
+        <div class="circular-progress">
+            <div class="value-container">
+            </div>
         </div>
+        <audio id="alarm" loop="true" src="./alarm-sound/alarm.mp3"></audio>
+        <audio id="beep" loop="true" src="./alarm-sound/ping.mp3"></audio>
         <div class="buttons">
             <button id="stopTimer">Stop</button>
             <button id="startTimer">Start</button>
         </div>
+        <h2>Select your time:</h2>
         <div class="dropdown-times">
-            <h2>Select your time:</h2>
             <select name="times" id="times">
                 <option value="0">0 minutes</option>
                 <option value="1">1 minute</option>
@@ -38,6 +38,7 @@
         </div>
     </div>
     <script src="index.js"></script>
+
 </body>
 
 </html>

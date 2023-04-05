@@ -4,7 +4,9 @@ const audioBeep = document.getElementById("beep");
 const startB = document.getElementById("startTimer");
 const stopB = document.getElementById("stopTimer");
 const timeNow = document.querySelector(".timeNow");
-const timer = document.querySelector(".timer");
+const timer = document.querySelector(".value-container");
+const progressBar = document.querySelector(".circular-progress");
+const valueContainer = document.querySelector(".value-container");
 const minutesSelected = document.getElementById("times");
 
 let dropdownValue = Number(minutesSelected.value);
@@ -13,16 +15,6 @@ timer.innerHTML = "00 : 00 : 00";
 stopB.addEventListener("click", () => {
     minutesSelected.disabled = false;
     startB.disabled = false;
-    timer.innerHTML = "00 : 00 : 00";
-    clearInterval(timeInterval)
-    audio.pause();
-    audioBeep.pause();
-})
-
-let timerC;
-
-minutesSelected.addEventListener("change", () => {
-    dropdownValue = Number(minutesSelected.value);
     switch (dropdownValue) {
         case 0:
             timer.innerHTML = "00 : 00 : 00"; break
@@ -41,9 +33,63 @@ minutesSelected.addEventListener("change", () => {
         case 120:
             timer.innerHTML = "02 : 00 : 00"; break
     }
+    clearInterval(timeInterval)
+    audio.pause();
+    audioBeep.pause();
+    progressBar.style.background = `conic-gradient(
+      red ${0 * 3.6}deg,
+      #f0f0f0 ${0 * 3.6}deg
+  )`;
+
+})
+
+//let progressValue = 0;
+let progressStep = 0;
+let progressEndValue = 100;
+
+
+
+
+let timerC;
+
+minutesSelected.addEventListener("change", () => {
+    dropdownValue = Number(minutesSelected.value);
+    switch (dropdownValue) {
+        case 0:
+            timer.innerHTML = "00 : 00 : 00"; break
+        case 1:
+            timer.innerHTML = "00 : 01 : 00";
+            progressStep = 100 / 60;
+            break
+        case 5:
+            timer.innerHTML = "00 : 05 : 00";
+            progressStep = 100 / 300;
+            break
+        case 10:
+            timer.innerHTML = "00 : 10 : 00";
+            progressStep = 100 / 600;
+            break
+        case 15:
+            timer.innerHTML = "00 : 15 : 00";
+            progressStep = 100 / 900;
+            break
+        case 30:
+            timer.innerHTML = "00 : 30 : 00";
+            progressStep = 100 / 1800;
+            break
+        case 60:
+            timer.innerHTML = "01 : 00 : 00";
+            progressStep = 100 / 3600;
+            break
+        case 120:
+            timer.innerHTML = "02 : 00 : 00";
+            progressStep = 100 / 7200;
+            break
+    }
 });
 let timeInterval;
 startB.addEventListener("click", () => {
+    let progressTotal = 0;
     const pomodoroTime = new Date();
     const now = new Date();
     timerC = pomodoroTime;
@@ -60,14 +106,19 @@ startB.addEventListener("click", () => {
             if (secondsP < 11 && secondsP >= 1 && minutesP === 0 && hoursP === 0) {
                 audioBeep.play();
             }
-            timer.innerHTML = timeP;
-            if (timer.innerHTML === "0-1 : 0-1 : 00") {
+            progressTotal += progressStep;
+            progressBar.style.background = `conic-gradient(
+      red ${progressTotal * 3.6}deg,
+      #f0f0f0 ${progressTotal * 3.6}deg
+  )`;
+
+            if (hoursP === -1 && minutesP === -1 && secondsP === 0) {
                 audioBeep.pause();
                 clearInterval(timeInterval);
                 audio.play();
                 return timer.innerText = "00 : 00 : 00";
-
             }
+            timer.innerHTML = timeP;
         }
 
         timeInterval = setInterval(startTimer, 1000);
@@ -89,6 +140,11 @@ function refreshTime() {
 
 refreshTime();
 setInterval(refreshTime, 1000);
+
+
+
+
+
 
 
 

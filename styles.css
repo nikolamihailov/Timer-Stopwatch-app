@@ -9,6 +9,36 @@ body {
 }
 
 
+.circular-progress {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.circular-progress:before {
+    content: "";
+    position: absolute;
+    height: 88%;
+    width: 88%;
+    background-color: rgb(30, 28, 28);
+    border-radius: 50%;
+}
+
+.value-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 55px;
+    color: #ffffff;
+}
+
 .timeNow {
     font-size: 17px;
     font-weight: bold;
@@ -22,7 +52,7 @@ body {
 select {
     text-align: center;
     border-radius: 12px;
-    height: 35px;
+    height: 100%;
     width: 120px;
     background-color: rgb(163, 163, 163);
     font-weight: bold;
@@ -56,19 +86,22 @@ option:checked {
     margin: 0;
 }
 
+/*
 .timer {
+    z-index: 100;
     font-size: 130px;
     margin: 0px;
     margin-bottom: 30px;
 }
-
+*/
 .dropdown-times {
-    margin-top: 30px;
+    height: 40px;
+    margin-top: 10px;
+    overflow: hidden;
 }
 
-.dropdown-times h2 {
-    margin: 0;
-    margin-bottom: 20px;
+h2 {
+    margin-top: 40px;
 }
 
 .buttons {
@@ -126,10 +159,28 @@ button:active {
     button {
         width: 100px;
     }
+
+    .circular-progress {
+        height: 350px;
+        width: 350px;
+    }
+
+    .value-container {
+        font-size: 45px;
+    }
 }
 
 @media only screen and (max-width: 500px) {
     .timer {
-        font-size: 60px;
+        font-size: 20px;
+    }
+
+    .circular-progress {
+        height: 300px;
+        width: 300px;
+    }
+
+    .value-container {
+        font-size: 40px;
     }
 }
