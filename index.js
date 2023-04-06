@@ -2,6 +2,7 @@ const timeEl = document.getElementById("time");
 const audio = document.getElementById("alarm");
 const audioBeep = document.getElementById("beep");
 const startB = document.getElementById("startTimer");
+const pauseB = document.getElementById("pause");
 const stopB = document.getElementById("stopTimer");
 const timeNow = document.querySelector(".timeNow");
 const timer = document.querySelector(".value-container");
@@ -43,14 +44,7 @@ stopB.addEventListener("click", () => {
 
 })
 
-//let progressValue = 0;
 let progressStep = 0;
-let progressEndValue = 100;
-
-
-
-
-let timerC;
 
 minutesSelected.addEventListener("change", () => {
     dropdownValue = Number(minutesSelected.value);
@@ -88,42 +82,49 @@ minutesSelected.addEventListener("change", () => {
     }
 });
 let timeInterval;
-startB.addEventListener("click", () => {
-    let progressTotal = 0;
-    const pomodoroTime = new Date();
-    const now = new Date();
-    timerC = pomodoroTime;
-    pomodoroTime.setMinutes(now.getMinutes() + dropdownValue);
-    if (dropdownValue > 0) {
-        minutesSelected.disabled = true;
-        function startTimer() {
-            const nowIn = new Date();
-            const differenceInSeconds = (timerC - nowIn) / 1000;
-            const hoursP = Math.floor(differenceInSeconds / 3600) % 24;
-            const minutesP = Math.floor(differenceInSeconds / 60) % 60;
-            const secondsP = Math.ceil(differenceInSeconds) % 60;
-            const timeP = `${formatTime(hoursP)} : ${formatTime(minutesP)} : ${formatTime(secondsP)}`;
-            if (secondsP < 11 && secondsP >= 1 && minutesP === 0 && hoursP === 0) {
-                audioBeep.play();
-            }
 
+startB.addEventListener("click", () => {
+    if (dropdownValue > 0) {
+        let progressTotal = 0;
+        let totalSeconds = dropdownValue * 60 - 1;
+        let isPaused = false;
+        pauseB.addEventListener("click", () => {
+            if (!isPaused) {
+                pauseB.innerHTML = `<i class="fa fa-play"></i>`;
+                clearInterval(timeInterval);
+                isPaused = true;
+            } else {
+                pauseB.innerHTML = `<i class="fa fa-pause"></i>`;
+                clearInterval(timeInterval);
+                timeInterval = setInterval(startTimer, 1000);
+                isPaused = false;
+            }
+        })
+        function startTimer() {
+            const hours = Math.floor(totalSeconds / 3600) % 24;
+            const minutes = Math.floor(totalSeconds / 60) % 60;
+            const seconds = Math.floor(totalSeconds % 60);
+            totalSeconds--;
             progressTotal += progressStep;
             progressBar.style.background = `conic-gradient(
-      red ${progressTotal * 3.6}deg,
-      #f0f0f0 ${progressTotal * 3.6}deg
-  )`;
-
-            if (hoursP === -1 && minutesP === -1 && secondsP === -0) {
+             red ${progressTotal * 3.6}deg,
+             #f0f0f0 ${progressTotal * 3.6}deg)`;
+            if (hours === 0 && minutes === 0 && seconds === 0) {
                 audioBeep.pause();
-                clearInterval(timeInterval);
                 audio.play();
+                clearInterval(timeInterval);
                 return timer.innerText = "00 : 00 : 00";
             }
-            timer.innerHTML = timeP;
-        }
 
+            if (seconds <= 10 && seconds >= 1 && minutes === 0 && hours === 0) {
+                audioBeep.play();
+            }
+            timer.innerHTML = `${formatTime(hours)} : ${formatTime(minutes)} : ${formatTime(seconds)}`;
+
+        }
         timeInterval = setInterval(startTimer, 1000);
         startB.disabled = true;
+        minutesSelected.disabled = true;
     }
 })
 
