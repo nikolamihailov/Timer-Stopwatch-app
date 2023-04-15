@@ -81,8 +81,8 @@ minutesSelected.addEventListener("change", () => {
             break;
     }
 });
-let timeInterval;
 
+let timeInterval;
 startB.addEventListener("click", () => {
     if (dropdownValue > 0) {
         let progressTotal = 0;
