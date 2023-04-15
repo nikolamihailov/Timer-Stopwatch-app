@@ -18,23 +18,23 @@ stopB.addEventListener("click", () => {
     startB.disabled = false;
     switch (dropdownValue) {
         case 0:
-            timer.innerHTML = "00 : 00 : 00"; break
+            timer.innerHTML = "00 : 00 : 00"; break;
         case 1:
-            timer.innerHTML = "00 : 01 : 00"; break
+            timer.innerHTML = "00 : 01 : 00"; break;
         case 5:
-            timer.innerHTML = "00 : 05 : 00"; break
+            timer.innerHTML = "00 : 05 : 00"; break;
         case 10:
-            timer.innerHTML = "00 : 10 : 00"; break
+            timer.innerHTML = "00 : 10 : 00"; break;
         case 15:
-            timer.innerHTML = "00 : 15 : 00"; break
+            timer.innerHTML = "00 : 15 : 00"; break;
         case 30:
-            timer.innerHTML = "00 : 30 : 00"; break
+            timer.innerHTML = "00 : 30 : 00"; break;
         case 60:
-            timer.innerHTML = "01 : 00 : 00"; break
+            timer.innerHTML = "01 : 00 : 00"; break;
         case 120:
-            timer.innerHTML = "02 : 00 : 00"; break
+            timer.innerHTML = "02 : 00 : 00"; break;
     }
-    clearInterval(timeInterval)
+    clearInterval(timeInterval);
     audio.pause();
     audioBeep.pause();
     progressBar.style.background = `conic-gradient(
@@ -42,7 +42,7 @@ stopB.addEventListener("click", () => {
       #f0f0f0 ${0 * 3.6}deg
   )`;
 
-})
+});
 
 let progressStep = 0;
 
@@ -50,35 +50,35 @@ minutesSelected.addEventListener("change", () => {
     dropdownValue = Number(minutesSelected.value);
     switch (dropdownValue) {
         case 0:
-            timer.innerHTML = "00 : 00 : 00"; break
+            timer.innerHTML = "00 : 00 : 00"; break;
         case 1:
             timer.innerHTML = "00 : 01 : 00";
             progressStep = 100 / (60 * 1);
-            break
+            break;
         case 5:
             timer.innerHTML = "00 : 05 : 00";
             progressStep = 100 / (60 * 5);
-            break
+            break;
         case 10:
             timer.innerHTML = "00 : 10 : 00";
             progressStep = 100 / (60 * 10);
-            break
+            break;
         case 15:
             timer.innerHTML = "00 : 15 : 00";
             progressStep = 100 / (60 * 15);
-            break
+            break;
         case 30:
             timer.innerHTML = "00 : 30 : 00";
             progressStep = 100 / (60 * 30);
-            break
+            break;
         case 60:
             timer.innerHTML = "01 : 00 : 00";
             progressStep = 100 / (60 * 60);
-            break
+            break;
         case 120:
             timer.innerHTML = "02 : 00 : 00";
             progressStep = 100 / (60 * 120);
-            break
+            break;
     }
 });
 let timeInterval;
@@ -99,7 +99,7 @@ startB.addEventListener("click", () => {
                 timeInterval = setInterval(startTimer, 1000);
                 isPaused = false;
             }
-        })
+        });
         function startTimer() {
             const hours = Math.floor(totalSeconds / 3600) % 24;
             const minutes = Math.floor(totalSeconds / 60) % 60;
@@ -126,11 +126,11 @@ startB.addEventListener("click", () => {
         startB.disabled = true;
         minutesSelected.disabled = true;
     }
-})
+});
 
 const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
-}
+};
 function refreshTime() {
     const now = new Date();
     const hours = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();;
@@ -142,11 +142,4 @@ function refreshTime() {
 
 refreshTime();
 setInterval(refreshTime, 1000);
-
-
-
-
-
-
-
 
