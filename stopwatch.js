@@ -8,6 +8,7 @@ timer.innerHTML = "00 : 00 : 00";
 
 stopB.addEventListener("click", () => {
     startB.disabled = false;
+    pauseB.disabled = true;
     clearInterval(timeInterval);
     timer.innerHTML = "00 : 00 : 00";
 });

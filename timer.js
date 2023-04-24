@@ -17,6 +17,7 @@ timer.innerHTML = "00 : 00 : 00";
 stopB.addEventListener("click", () => {
     minutesSelected.disabled = false;
     startB.disabled = false;
+    pauseB.disabled = true;
     switch (dropdownValue) {
         case 0:
             timer.innerHTML = "00 : 00 : 00"; break;
