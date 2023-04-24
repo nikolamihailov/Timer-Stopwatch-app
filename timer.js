@@ -11,6 +11,7 @@ const valueContainer = document.querySelector(".value-container");
 const minutesSelected = document.getElementById("times");
 
 let dropdownValue = Number(minutesSelected.value);
+
 timer.innerHTML = "00 : 00 : 00";
 
 stopB.addEventListener("click", () => {
@@ -44,13 +45,11 @@ stopB.addEventListener("click", () => {
 
 });
 
-let progressStep = 0;
+let progressStep = 100 / (60 * 1);
 
 minutesSelected.addEventListener("change", () => {
     dropdownValue = Number(minutesSelected.value);
     switch (dropdownValue) {
-        case 0:
-            timer.innerHTML = "00 : 00 : 00"; break;
         case 1:
             timer.innerHTML = "00 : 01 : 00";
             progressStep = 100 / (60 * 1);
@@ -96,8 +95,10 @@ startB.addEventListener("click", () => {
             } else {
                 pauseB.innerHTML = `<i class="fa fa-pause"></i>`;
                 clearInterval(timeInterval);
-                timeInterval = setInterval(startTimer, 1000);
-                isPaused = false;
+                if (totalSeconds !== dropdownValue * 60 - 1) {
+                    timeInterval = setInterval(startTimer, 1000);
+                    isPaused = false;
+                }
             }
         });
         function startTimer() {
@@ -142,4 +143,3 @@ function refreshTime() {
 
 refreshTime();
 setInterval(refreshTime, 1000);
-
