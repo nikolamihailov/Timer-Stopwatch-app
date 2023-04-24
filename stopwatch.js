@@ -9,6 +9,9 @@ timer.innerHTML = "00 : 00 : 00";
 stopB.addEventListener("click", () => {
     startB.disabled = false;
     pauseB.disabled = true;
+    if (pauseB.innerHTML === `<i class="fa fa-play"></i>`) {
+        pauseB.innerHTML = `<i class="fa fa-pause"></i>`;
+    }
     clearInterval(timeInterval);
     timer.innerHTML = "00 : 00 : 00";
 });
@@ -21,6 +24,8 @@ startB.addEventListener("click", () => {
     let progressTotal = 0;
     let totalSeconds = 0;
     let isPaused = false;
+    pauseB.disabled = false;
+
     pauseB.addEventListener("click", () => {
         if (!isPaused) {
             pauseB.innerHTML = `<i class="fa fa-play"></i>`;

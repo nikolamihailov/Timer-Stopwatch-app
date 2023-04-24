@@ -17,6 +17,9 @@ timer.innerHTML = "00 : 00 : 00";
 stopB.addEventListener("click", () => {
     minutesSelected.disabled = false;
     startB.disabled = false;
+    if (pauseB.innerHTML === `<i class="fa fa-play"></i>`) {
+        pauseB.innerHTML = `<i class="fa fa-pause"></i>`;
+    }
     pauseB.disabled = true;
     switch (dropdownValue) {
         case 0:
@@ -88,6 +91,7 @@ startB.addEventListener("click", () => {
         let progressTotal = 0;
         let totalSeconds = dropdownValue * 60 - 1;
         let isPaused = false;
+        pauseB.disabled = false;
         pauseB.addEventListener("click", () => {
             if (!isPaused) {
                 pauseB.innerHTML = `<i class="fa fa-play"></i>`;
